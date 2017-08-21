@@ -15,22 +15,26 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "bucklescript-tea-tools.html-to-view",
-            "title": "BuckleScript-TEA: Convert HTML to DSL in OCaml",
-            "description": "This convert your selection to Elm View DSL in OCaml"
-        }]
+        "commands": [
+            {
+                "command": "bucklescript-tea-tools.html-to-view",
+                "title": "BuckleScript-TEA: Convert HTML to DSL in OCaml",
+                "description": "This convert your selection to Elm View DSL in OCaml"
+            }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
+        "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "bs-platform": "^1.8.0",
+        "eslint": "^3.6.0",
+        "jquery": "^3.2.1",
+        "mocha": "^2.3.3",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0"
     }
 }

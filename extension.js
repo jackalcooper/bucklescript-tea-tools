@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
+var jQuery = require("./node_modules/jquery/dist/jquery")
 
+var parser = require('./lib/js/src/bs/parser')
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
@@ -22,15 +24,20 @@ function activate(context) {
             var withSpaces = editor.options.insertSpaces;
             // See if selected text is empty
             if (selectedText.length === 0) {
-                vscode.window.showWarningMessage('Please feed me with some selected HTML 😁');
+                vscode.window.showWarningMessage('Please feed me with some selected HTML');
                 return;
             } else {
                 editor.edit(function (editBuilder) {
-                    editBuilder.replace(editor.selection, "converted");
+                    try {
+                        editBuilder.replace(editor.selection, parser.convert(editor.selection));
+                    } catch (error) {
+                        console.log(error)
+                        vscode.window.showErrorMessage('Failed to convert HTML. ' + error);
+                    }
                 }).then(function () {});
             }
         } else {
-            vscode.window.showWarningMessage('Please open/activiate at least one tab/window in VS Code 😁');
+            vscode.window.showWarningMessage('Please open/activiate at least one tab/window in VS Code');
         }
     });
 

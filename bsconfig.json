@@ -1,0 +1,8 @@
+{
+    "name": "bucklescript-tea-tools",
+    "sources": [{
+        "dir": "src/bs"
+    }],
+    "bs-dependencies": [],
+    "generate-merlin": true
+}
