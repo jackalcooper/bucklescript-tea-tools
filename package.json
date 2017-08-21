@@ -1,0 +1,36 @@
+{
+    "name": "bucklescript-tea-tools",
+    "displayName": "BuckleScript-TEA Tools",
+    "description": "Handy tools for bucklescript-tea",
+    "version": "0.0.1",
+    "publisher": "jackalcooper",
+    "engines": {
+        "vscode": "^1.14.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:bucklescript-tea-tools.html-to-view"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [{
+            "command": "bucklescript-tea-tools.html-to-view",
+            "title": "BuckleScript-TEA: Convert HTML to DSL in OCaml",
+            "description": "This convert your selection to Elm View DSL in OCaml"
+        }]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "eslint": "^3.6.0",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
