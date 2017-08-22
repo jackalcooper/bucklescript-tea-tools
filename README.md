@@ -2,6 +2,9 @@
 
 This is a toolbox for developing JavaScript software on the framework BuckleScript-TEA.
 
+[Find this project at GitHub](https://github.com/jackalcooper/bucklescript-tea-tools).
+
+
 ## Features
 
 * HTML to Elm View DSL in OCaml
