@@ -3,6 +3,6 @@
     "sources": [{
         "dir": "src/bs"
     }],
-    "bs-dependencies": [],
+    "bs-dependencies": ["bs-vscode"],
     "generate-merlin": true
 }

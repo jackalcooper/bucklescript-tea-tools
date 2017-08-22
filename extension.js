@@ -1,7 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 var vscode = require('vscode');
-var jQuery = require("./node_modules/jquery/dist/jquery")
 
 var parser = require('./lib/js/src/bs/parser')
 // this method is called when your extension is activated
@@ -17,6 +16,7 @@ function activate(context) {
     // The commandId parameter must match the command field in package.json
     var disposable = vscode.commands.registerCommand('bucklescript-tea-tools.html-to-view', function () {
         var editor = vscode.window.activeTextEditor;
+        console.log(vscode.commands.getCommands)
         // Check if there is a valid editor activiated
         if (editor) {
             var selectedText = editor.document.getText(editor.selection);
@@ -29,7 +29,7 @@ function activate(context) {
             } else {
                 editor.edit(function (editBuilder) {
                     try {
-                        editBuilder.replace(editor.selection, parser.convert(editor.selection));
+                        editBuilder.replace(editor.selection, parser.convert(selectedText));
                     } catch (error) {
                         console.log(error)
                         vscode.window.showErrorMessage('Failed to convert HTML. ' + error);

@@ -24,20 +24,20 @@ type attr = <
   name : string
 > Js.t
 type node = <
-  attribs : string Js.Dict.t;
-  children : node Js.Dict.t;
-  _type : string;
-  name : string;
-  data : string
+  attributes : attr Js.Dict.t;
+  childNodes : node Js.Dict.t;
+  nodeType : int;
+  localName : string;
+  textContent : string
 > Js.t
 
-external parseHtml : string -> node Js.Array.t = "parseHTML" [@@bs.module "cheerio"]
+external parseHtml : string -> node Js.Array.t = "parseHTML" [@@bs.module "jquery"]
 let wrapString str =
   (* let str = Js.String.replace "\n" "" str in *)
   (* let str = Js.String.replace "\t" "" str in *)
   if str == "" then "\"\""
   else
-    let noneAscii = try str |> Js.String.match_ [%re "/[\u{0080}-\u{FFFF}\"]/gu"] with _ -> None in
+    let noneAscii = str |> Js.String.match_ [%re "/[\u{0080}-\u{FFFF}\"]/gu"] in
     match noneAscii with
     | Some _matched -> "{js|" ^ str ^ "|js}"
     | None -> "\"" ^ str ^ "\""
@@ -53,8 +53,9 @@ let tupleFromArray arr =
 let tupleFromList list = list |> String.concat ", " |> wrapTuple
 
 let constructAttribute attribute =
-  let name, value = attribute in
-  match attribute with
+  let name = attribute##name in
+  let value = attribute##value in
+  match name, value with
   | "checked", "checked" -> "checked true"
   | "checked", _ -> "checked false"
   | "class", value ->
@@ -90,13 +91,13 @@ let constructAttributeArray attributes =
   Js.Array.map constructAttribute attributes |> listFromArray
 
 let rec convertElement element =
-  let name = try element##name with _ -> "" in
-  let attributes = try Js.Dict.entries element##attribs with _ -> [%bs.obj [||]] in
-  let childNodes = try Js.Dict.values element##children with _ -> [%bs.obj [||]] in
-  let nodeType = try element##_type with _ -> (*any number other than 1, 2, 3*) "text" in
+  let name = element##localName in
+  let attributes:(attr Js.Array.t) = try Js.Dict.values element##attributes with _ -> [%bs.obj [||]] in
+  let childNodes = try Js.Dict.values element##childNodes with _ -> [%bs.obj [||]] in
+  let nodeType = try element##nodeType with _ -> (*any number other than 1, 2, 3*) 100 in
   match nodeType with
   (* element node *)
-  | "tag" when List.mem name elements ->
+  | 1 when List.mem name elements ->
     (match name with
      | "br" -> ["br"; constructAttributeArray attributes] |> String.concat " "
      | _ ->
@@ -110,11 +111,12 @@ let rec convertElement element =
        [name; constructAttributeArray attributes ; (Js.Array.map convertElement childNodes |> Js.Array.filter (fun x -> x != "")  |> listFromArray)] |> String.concat "\n"
     )
   (* text node *)
-  | "text" ->
-    let text = element##data in
+  | 3 ->
+    let text = element##textContent in
     let trimmed = Js.String.trim text in
     if trimmed == "" then "" else ["text"; (trimmed |> wrapString )] |> String.concat " "
   (* attribute node *)
+  | 2 -> ""
   | _ -> ""
 
 let convertElementArray elementArray =
@@ -127,7 +129,6 @@ let convertElementArray elementArray =
     ["div"; "" |> wrapList ; convertedArray |> Js.Array.filter (fun x -> x != "") |> listFromArray]  |> String.concat " "
 
 let convert str =
-  (* let _ = Js.log str in *)
   let elementArray = parseHtml str in
   let _ = Js.log elementArray in
   elementArray |> convertElementArray
