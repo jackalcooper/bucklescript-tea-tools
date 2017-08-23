@@ -31,10 +31,10 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "bs-vscode": "glennsl/bs-vscode",
         "cheerio": "^1.0.0-rc.2"
     },
     "devDependencies": {
+        "bs-vscode": "glennsl/bs-vscode",
         "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
         "bs-platform": "^1.8.0",
