@@ -10,7 +10,8 @@
     "keywords": [
         "bucklescript",
         "ocaml",
-        "bucklescript-tea"
+        "bucklescript-tea",
+        "tea"
     ],
     "categories": [
         "Other"
@@ -33,11 +34,11 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "bs-platform": "^1.8.2",
         "bs-vscode": "^0.1.0",
         "cheerio": "^1.0.0-rc.2"
     },
     "devDependencies": {
+        "bs-platform": "^1.8.2",
         "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
         "eslint": "^3.6.0",
