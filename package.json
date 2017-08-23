@@ -20,20 +20,22 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "bucklescriptTeaTools.htmlToView",
-            "title": "BuckleScript-TEA: Convert HTML to DSL in OCaml",
-            "description": "This convert your selection to Elm View DSL in OCaml"
-        }]
+        "commands": [
+            {
+                "command": "bucklescriptTeaTools.htmlToView",
+                "title": "BuckleScript-TEA: Convert HTML to DSL in OCaml",
+                "description": "This convert your selection to Elm View DSL in OCaml"
+            }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "cheerio": "^1.0.0-rc.2",
         "bs-platform": "^1.8.2",
-        "bs-vscode": "^0.1.0"
+        "bs-vscode": "^0.1.0",
+        "cheerio": "^1.0.0-rc.2"
     },
     "devDependencies": {
         "@types/mocha": "^2.2.32",
