@@ -11,7 +11,7 @@
    This property is read-only. *)
 let elements = ["br"; "br'"; "div"; "span"; "p"; "pre"; "a";
                 "section"; "header"; "footer"; "h1"; "h2"; "h3"; "h4"; "h5"; "h6"; "i";
-                "strong"; "button"; "input'"; "textarea"; "label"; "ul"; "ol"; "li"; "table";
+                "strong"; "button"; "input"; "textarea"; "label"; "ul"; "ol"; "li"; "table";
                 "thead"; "tfoot"; "tbody"; "th"; "tr"; "td"; "progress"; "img"; "select";
                 "option'"; "form"; "nav"]
 let properties = ["id"; "href"; "src"; "style"; "styles"; "placeholder"; "autofocus"; "value"; "name";
