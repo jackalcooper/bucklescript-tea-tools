@@ -2,7 +2,7 @@
     "name": "bucklescript-tea-tools",
     "displayName": "BuckleScript-TEA Tools",
     "description": "Handy tools for bucklescript-tea",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "jackalcooper",
     "engines": {
         "vscode": "^1.14.0"
