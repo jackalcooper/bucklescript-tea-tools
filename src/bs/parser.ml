@@ -124,7 +124,7 @@ let convertElementArray elementArray =
   then
     convertedArray |> Js.Array.filter (fun x -> x != "") |> Js.Array.join
   else
-    ["div"; "" |> wrapList ; convertedArray |> Js.Array.filter (fun x -> x != "") |> listFromArray]  |> String.concat " "
+    ["div"; "" |> wrapList ; convertedArray |> Js.Array.filter (fun x -> x != "") |> listFromArray]  |> String.concat "\n"
 
 let convert str =
   (* let _ = Js.log str in *)
