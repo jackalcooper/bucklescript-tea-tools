@@ -96,7 +96,7 @@ let rec convertElement element =
   let nodeType = try element##_type with _ -> (*any number other than 1, 2, 3*) "text" in
   match nodeType with
   (* element node *)
-  | "tag" when List.mem name elements ->
+  | "tag" ->
     (match name with
      | "br" -> ["br"; constructAttributeArray attributes] |> String.concat " "
      | _ ->
@@ -104,7 +104,7 @@ let rec convertElement element =
          match name with
          | "input" -> "input'"
          | name when List.mem name elements -> name
-         | _ -> ["Vdom.fullnode"; wrapString ""; wrapString name ; wrapString ""] |> String.concat " "
+         | _ -> ["Vdom.fullnode"; wrapString ""; wrapString name ; wrapString "" ; wrapString ""] |> String.concat " "
        )
        in
        [name; constructAttributeArray attributes ; (Js.Array.map convertElement childNodes |> Js.Array.filter (fun x -> x != "")  |> listFromArray)] |> String.concat "\n"
