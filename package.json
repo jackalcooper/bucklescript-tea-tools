@@ -2,7 +2,7 @@
     "name": "bucklescript-tea-tools",
     "displayName": "BuckleScript-TEA Tools",
     "description": "Handy tools for bucklescript-tea",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "jackalcooper",
     "engines": {
         "vscode": "^1.14.0"
@@ -34,10 +34,10 @@
     },
     "dependencies": {
         "bs-vscode": "^0.1.0",
-        "cheerio": "^1.0.0-rc.2"
+        "cheerio": "^1.0.0-rc.2",
+        "bs-platform": "^1.9.1"
     },
     "devDependencies": {
-        "bs-platform": "^1.8.2",
         "@types/mocha": "^2.2.32",
         "@types/node": "^6.0.40",
         "eslint": "^3.6.0",
